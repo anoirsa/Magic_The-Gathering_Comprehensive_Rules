@@ -62,7 +62,7 @@ public class FakeRepository implements DataRepository {
     public List<ContentResponse> getAllContents() {
         return ProjectMappingServices.toContentResponseList(DB_Content);
     }
-////
+////////
     public List<Glossary> getAllGlossary() {
         return DB_Glossary;
     }
