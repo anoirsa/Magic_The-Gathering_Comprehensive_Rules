@@ -18,6 +18,7 @@ import java.util.List;
 @RequestMapping("/api/v1/content")
 @AllArgsConstructor
 
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 public class FileController {
     private final FileService fileService;
 
