@@ -15,10 +15,11 @@ import java.text.RuleBasedCollator;
 import java.util.List;
 
 @RestController
+
 @RequestMapping("/api/v1/content")
 @AllArgsConstructor
-
 @CrossOrigin(origins = "*",allowedHeaders = "*")
+
 public class FileController {
     private final FileService fileService;
 
@@ -27,6 +28,7 @@ public class FileController {
         return fileService.getRulesByOneWord(word);
     }
 
+    @CrossOrigin(origins = "*",allowedHeaders = "*")
     @GetMapping("/rules/chapter_rules/{chapterNumber}")
     public @ResponseBody List<Rule> getRulesByChapterNumber(@PathVariable("chapterNumber") Integer chapterNumber) {
         return fileService.getRulesByChapterNumber(chapterNumber);
