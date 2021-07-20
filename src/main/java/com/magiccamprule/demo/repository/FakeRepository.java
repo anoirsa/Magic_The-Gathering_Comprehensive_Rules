@@ -88,5 +88,12 @@ public class FakeRepository implements DataRepository {
         return Optional.of(roleChapterContent.get());
     }
 
+    @Override
+    public Optional<ContentResponse> getContentByNumber(Integer idNumber) {
+        Content content = DB_Content.stream().filter(c -> c.getContentNumber().equals(idNumber))
+                .findFirst().get();
+        return Optional.of(ProjectMappingServices.toContentResponse(content));
+    }
+
 }
 

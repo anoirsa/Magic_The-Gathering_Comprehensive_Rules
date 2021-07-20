@@ -48,6 +48,10 @@ public class FileService {
         return dataRepository.getSpecificRuleByRoleId(ruleId).orElse(null);
     }
 
+    public ContentResponse getContentByNumber(Integer idNumber) {
+        return dataRepository.getContentByNumber(idNumber).orElse(null);
+    }
+
 
 
 }

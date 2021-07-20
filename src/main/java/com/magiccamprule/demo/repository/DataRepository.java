@@ -4,6 +4,7 @@ import com.magiccamprule.demo.model.Glossary;
 import com.magiccamprule.demo.model.Rule;
 import com.magiccamprule.demo.model.dtos.ContentResponse;
 import com.magiccamprule.demo.model.dtos.RuleChapterContent;
+import io.swagger.models.auth.In;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,4 +21,7 @@ public interface DataRepository {
     Glossary getGlossaryByTerm(String term);
 
     Optional<RuleChapterContent> getSpecificRuleByRoleId(String ruleId);
+
+    Optional<ContentResponse> getContentByNumber(Integer idNumber);
 }
+

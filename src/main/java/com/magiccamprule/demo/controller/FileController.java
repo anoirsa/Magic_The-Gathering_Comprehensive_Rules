@@ -52,6 +52,10 @@ public class FileController {
     public Glossary getGlossaryByTerm(@PathVariable("term")String term){
         return fileService.getGlossaryByTerm(term);
     }
+    @GetMapping("/specific/{idNumber}")
+    public ContentResponse getContentByNumber(@PathVariable("idNumber") Integer idNumber) {
+        return fileService.getContentByNumber(idNumber);
+    }
 
 
 }
