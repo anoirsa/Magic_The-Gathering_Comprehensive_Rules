@@ -28,7 +28,10 @@ public class FileController {
         return fileService.getRulesByOneWord(word);
     }
 
-    @CrossOrigin(origins = "*",allowedHeaders = "*")
+    @GetMapping("all/inone")
+    public List<Content> getEverything() {
+        return fileService.getEverything();
+    }
     @GetMapping("/rules/chapter_rules/{chapterNumber}")
     public @ResponseBody List<Rule> getRulesByChapterNumber(@PathVariable("chapterNumber") Integer chapterNumber) {
         return fileService.getRulesByChapterNumber(chapterNumber);

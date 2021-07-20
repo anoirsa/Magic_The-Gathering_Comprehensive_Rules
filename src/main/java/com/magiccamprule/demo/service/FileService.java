@@ -1,6 +1,7 @@
 package com.magiccamprule.demo.service;
 
 
+import com.magiccamprule.demo.model.Content;
 import com.magiccamprule.demo.model.Glossary;
 import com.magiccamprule.demo.model.Rule;
 import com.magiccamprule.demo.model.dtos.ContentResponse;
@@ -50,6 +51,10 @@ public class FileService {
 
     public ContentResponse getContentByNumber(Integer idNumber) {
         return dataRepository.getContentByNumber(idNumber).orElse(null);
+    }
+
+    public List<Content> getEverything() {
+        return dataRepository.getAll();
     }
 
 

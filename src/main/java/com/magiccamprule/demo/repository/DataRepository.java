@@ -1,5 +1,6 @@
 package com.magiccamprule.demo.repository;
 
+import com.magiccamprule.demo.model.Content;
 import com.magiccamprule.demo.model.Glossary;
 import com.magiccamprule.demo.model.Rule;
 import com.magiccamprule.demo.model.dtos.ContentResponse;
@@ -23,5 +24,7 @@ public interface DataRepository {
     Optional<RuleChapterContent> getSpecificRuleByRoleId(String ruleId);
 
     Optional<ContentResponse> getContentByNumber(Integer idNumber);
+
+    List<Content> getAll();
 }
 

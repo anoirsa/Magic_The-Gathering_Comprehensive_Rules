@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 // In case we need to switch implementation
 @Repository("fakeRepository")
 // The Database I'm creating for this application is just an arrayList, In real applications I usually use PostgreSql or Sql Litw
-public class FakeRepository implements DataRepository {
+public class FakeRepository implements DataRepository{
     public static List<Content> DB_Content;
     public static List<Glossary> DB_Glossary;
     public FakeRepository() {
@@ -93,6 +93,11 @@ public class FakeRepository implements DataRepository {
         Content content = DB_Content.stream().filter(c -> c.getContentNumber().equals(idNumber))
                 .findFirst().get();
         return Optional.of(ProjectMappingServices.toContentResponse(content));
+    }
+
+    @Override
+    public List<Content> getAll() {
+        return DB_Content;
     }
 
 }
