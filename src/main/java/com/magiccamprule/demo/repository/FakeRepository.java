@@ -49,12 +49,11 @@ public class FakeRepository implements DataRepository{
     }
 ////////
     public List<Rule> getRulesByChapterNumber(Integer chapterNumber) {
+
         for(Content content : DB_Content) {
-            List<Rule> rulesToBeRetunred = content.getChapters().stream()
-                    .filter(chapter -> chapter.getChapterNumber() == chapterNumber)
-                    .findFirst().get()
-                    .getRulesInList();
-            if (rulesToBeRetunred.size() != 0) return  rulesToBeRetunred;
+             for (Chapter chapter : content.getChapters()) {
+                 if (chapter.getChapterNumber().equals(chapterNumber)) return chapter.getRulesInList();
+             }
         }
         return null;
     }
