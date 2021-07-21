@@ -69,7 +69,14 @@ public class ParsingServices {
         for (Content i : contents) {
             List<Rule> rules = new ArrayList<>();
             String fullTitle = i.getChapters().get(0).getFullTitle();
-            String endTitle = i.getChapters().get(i.getChapters().size() - 1).getFullTitle();
+            //String endTitle = i.getChapters().get(i.getChapters().size() - 1).getFullTitle();
+            // Stopped index
+            String endTitle = "";
+            if (contents.indexOf(i) != (contents.size() -1)) {
+                endTitle = contents.get(contents.indexOf(i) + 1).getChapters().get(0).getFullTitle();
+            }
+            else endTitle = "Glossary";
+            //
 
             Integer numberOfLineStart = getLineNumber(fullTitle, true);
             Integer numberOfLineEnd = getLineNumber(endTitle, true);
