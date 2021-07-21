@@ -8,6 +8,7 @@ import com.magiccamprule.demo.model.Rule;
 import com.magiccamprule.demo.model.dtos.ContentResponse;
 import com.magiccamprule.demo.model.dtos.RuleChapterContent;
 import com.magiccamprule.demo.service.ProjectMappingServices;
+import com.magiccamprule.demo.service.ProjectServices;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class FakeRepository implements DataRepository{
         DB_Content.stream().forEach(content -> {
             content.getChapters().stream().forEach(c -> {
                 List<Rule> listToBeAdded = c.getRulesInList().stream().filter(r ->
-                        r.getRoleText().toUpperCase().contains(word.toUpperCase()))
+                         ProjectServices.isContain(r.getRoleText().toUpperCase(), word.toUpperCase()))
                         .collect(Collectors.toList());
                 arrayTobeReturned.addAll(listToBeAdded);
             });
