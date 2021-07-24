@@ -103,7 +103,7 @@ public class ParsingServices {
                         previousId = removeLastDot(numberAndTitle[0]);
                     }
                     else if (strline.equals("")) {
-                        Rule newRule = new Rule(previousId, previousDescription);
+                        Rule newRule = new Rule(previousId, previousDescription );
                         rules.add(newRule);
                         previousDescription = "";
                         previousId = "";
@@ -196,5 +196,42 @@ public class ParsingServices {
 
         else return idGiven;
     }
+
+
+    // Get chapterIds
+    public static List<String> getIds(List<Content> rolesByContent) {
+        List<String> arrayToBeReturned = new ArrayList<>();
+        for (Content content : rolesByContent) {
+            for (Chapter chapter : content.getChapters()) {
+                arrayToBeReturned.add((Integer.toString(chapter.getChapterNumber())));
+
+            }
+        }
+        return arrayToBeReturned;
+    }
+
+    // Underline
+
+    public static List<List<Rule>> underline(List<List<Rule>> rolesByContent, List<String> ids) {
+        List<List<Rule>> arrayToBeReturned = new ArrayList<>();
+        for (List<Rule> list : rolesByContent) {
+            List<Rule> toBeAttached = new ArrayList<>();
+            for (Rule rule : list) {
+                List<String> idsToContained = ids.stream()
+                        .filter(item -> rule.getRoleText().contains(item)).collect(Collectors.toList());
+                String ruleText = rule.getRoleText();
+                if (idsToContained.size() != 0) {
+                    for (String id : idsToContained) {
+                        ruleText = ruleText.replaceAll(id, "<a>"+ id + "</a>");
+                    }
+                }
+                Rule ruleModified = new Rule(rule.getRoleId(), ruleText);
+                toBeAttached.add(ruleModified);
+            }
+            arrayToBeReturned.add(toBeAttached);
+        }
+        return arrayToBeReturned;
+    }
+
 
 }

@@ -21,14 +21,19 @@ import java.util.stream.Collectors;
 @Repository("fakeRepository")
 // The Database I'm creating for this application is just an arrayList, In real applications I usually use PostgreSql or Sql Litw
 public class FakeRepository implements DataRepository{
+    public static List<String> chapterIds;
     public static List<Content> DB_Content;
     public static List<Glossary> DB_Glossary;
     public FakeRepository() {
         try {
             List<Content> contents = ParsingServices.fileContent();
+            chapterIds = ParsingServices.getIds(contents);
             List<List<Rule>> rolesByContent = ParsingServices.setRules(contents);
+            rolesByContent = ParsingServices.underline(rolesByContent,chapterIds);
             DB_Content = ParsingServices.setRulesToContent(rolesByContent, contents);
             DB_Glossary = ParsingServices.parseGlossary();
+ ;
+
 
 
         } catch (Exception c){
@@ -99,6 +104,7 @@ public class FakeRepository implements DataRepository{
     public List<Content> getAll() {
         return DB_Content;
     }
+
 
 }
 

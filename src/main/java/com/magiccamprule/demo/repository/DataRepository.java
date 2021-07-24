@@ -26,5 +26,7 @@ public interface DataRepository {
     Optional<ContentResponse> getContentByNumber(Integer idNumber);
 
     List<Content> getAll();
+
+
 }
 
